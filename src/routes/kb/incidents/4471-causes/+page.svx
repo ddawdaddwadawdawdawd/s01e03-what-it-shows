@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 · two date bugs, not one'
 owner: Damian Tański
-status: draft
+status: known
 reviewed: 2026-10-28
 signature: Damian Tański
 ---
@@ -39,10 +39,10 @@ The desk's five one-day-move notes are all in the `parser` group. They do not ma
 The intake tag also disagrees with the cause for 38 unique reports, so do not split tickets by tag.
 </Callout>
 
-## Tickets to file
+## Filed tickets
 
-- Keep the 379 `parser` reports together under [the shared-parser issue](https://github.com/ddawdaddwadawdawdawd/s01e03-what-it-shows/issues/1).
-- Track the 33 `hint` reports separately in [the booking-v3 issue](https://github.com/ddawdaddwadawdawdawd/s01e03-what-it-shows/issues/2).
+- The 379 `parser` reports are recorded in [the shared-parser issue](https://github.com/ddawdaddwadawdawdawd/s01e03-what-it-shows/issues/1).
+- The 33 `hint` reports are recorded separately in [the booking-v3 issue](https://github.com/ddawdaddwadawdawdawd/s01e03-what-it-shows/issues/2).
 
 The existing incident note is at [#4471](/kb/incidents/4471). This page records the two causes
 behind its merged count.

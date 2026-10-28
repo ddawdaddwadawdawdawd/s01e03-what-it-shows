@@ -41,8 +41,8 @@ The intake tag also disagrees with the cause for 38 unique reports, so do not sp
 
 ## Filed tickets
 
-- The 379 `parser` reports are recorded in [the shared-parser issue](https://github.com/ddawdaddwadawdawdawd/s01e03-what-it-shows/issues/1).
-- The 33 `hint` reports are recorded separately in [the booking-v3 issue](https://github.com/ddawdaddwadawdawdawd/s01e03-what-it-shows/issues/2).
+- The 379 `parser` reports are recorded in [the shared-parser issue](https://github.com/ddawdaddwadawdawdawd/s01e03-what-it-shows/issues/1). Engineering fixed it with `fix(dates): parse dd/mm for eu locales`.
+- The 33 `hint` reports are recorded separately in [the booking-v3 issue](https://github.com/ddawdaddwadawdawdawd/s01e03-what-it-shows/issues/2). Engineering will not fix it because the booking-v3 form was retired.
 
 The existing incident note is at [#4471](/kb/incidents/4471). This page records the two causes
 behind its merged count.

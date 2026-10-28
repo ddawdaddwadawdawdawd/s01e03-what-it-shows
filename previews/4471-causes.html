@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>#4471 · two date bugs, not one · support kb</title>
+  <style>
+    :root { color-scheme: light dark; --bg:#fbfaf7; --fg:#1d1d1b; --muted:#6b6a66; --line:#e3e0d8; --accent:#2f6f5e; --warn:#b4501f; --warn-bg:#fbeee6; --note-bg:#eef5f2; }
+    @media (prefers-color-scheme:dark) { :root { --bg:#171716; --fg:#ecebe6; --muted:#9c9a93; --line:#34332f; --accent:#6fbfa6; --warn:#f0905d; --warn-bg:#3a2418; --note-bg:#1d2c27; } }
+    body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.6 system-ui,sans-serif; }
+    main { max-width:760px; margin:0 auto; padding:2rem 16px 4rem; }
+    a { color:var(--accent); text-decoration:none; }
+    .crumb,.meta,footer { color:var(--muted); font-size:.85rem; }
+    h1 { margin:.25rem 0 .5rem; line-height:1.2; }
+    .meta { display:flex; flex-wrap:wrap; gap:.5rem 1rem; }
+    .status { border:1px solid var(--line); border-radius:99px; padding:0 .6rem; }
+    table { border-collapse:collapse; width:100%; margin:1rem 0; font-size:.92rem; }
+    th,td { border-bottom:1px solid var(--line); padding:.35rem .5rem; text-align:left; }
+    code { font-family:ui-monospace,monospace; font-size:.88em; }
+    aside { border-left:4px solid var(--accent); padding:.5rem 1rem; margin:1rem 0; background:var(--note-bg); }
+    aside.warn { border-color:var(--warn); background:var(--warn-bg); }
+    footer { margin-top:3rem; border-top:1px solid var(--line); padding-top:1rem; }
+    .stamp { margin:2rem 0 0; font: .85rem ui-monospace,monospace; color:var(--muted); }
+  </style>
+</head>
+<body>
+<main>
+  <a class="crumb" href="/kb">support desk · kb</a>
+  <h1>#4471 · two date bugs, not one</h1>
+  <p class="meta"><span>owner <b>Damian Tański</b></span><span class="status">draft</span><span>reviewed 2026-10-28 · 0 days ago</span></p>
+
+  <p>Ticket #4471 contains two different date bugs, not one parser bug. The export has 427 rows but only <strong>412 unique reports</strong>: 15 IDs repeat because export pages overlap. Count each report ID once.</p>
+
+  <h2>What the reports show</h2>
+  <p>Classify each report from the tenant's locale and booking form, not the intake tag. Intake guesses from the reporter's browser; it does not identify the cause.</p>
+
+  <p class="sum"><strong>412</strong> reports merged into #4471 · <strong>2</strong> causes</p>
+  <table>
+    <thead><tr><th>cause</th><th>reports</th><th>tagged as</th><th>tenants</th><th>seen</th><th></th></tr></thead>
+    <tbody>
+      <tr><td><code>parser</code></td><td>379</td><td>parser ×356 · hint ×23</td><td>11</td><td>2026-04-01 → 2026-10-04</td><td>#4471</td></tr>
+      <tr><td><code>hint</code></td><td>33</td><td>parser ×15 · hint ×18</td><td>3</td><td>2026-04-17 → 2026-09-22</td><td>not this ticket — no ticket of its own</td></tr>
+    </tbody>
+  </table>
+
+  <h3><code>parser</code> · 379 reports</h3>
+  <p>The shared parser reads every date month first. Tenants in day-first locales therefore get flipped dates. This affects all 11 tenants and arrives through app, email, and form reports.</p>
+
+  <h3><code>hint</code> · 33 reports</h3>
+  <p>The <code>booking-v3</code> form tells people to enter <code>MM/DD/YYYY</code>, then reads the value using the tenant's day-first locale. Those form submissions fail differently from the shared-parser bug. The affected tenants are Alder Physio, Copper Studio, and Pale Harbour.</p>
+
+  <aside class="warn">The desk's five one-day-move notes are all in the <code>parser</code> group. They do not make a third cause. The intake tag also disagrees with the cause for 38 unique reports, so do not split tickets by tag.</aside>
+
+  <h2>Tickets to file</h2>
+  <ul><li>Keep the 379 <code>parser</code> reports together under <a href="https://github.com/ddawdaddwadawdawdawd/s01e03-what-it-shows/issues/1">the shared-parser issue</a>.</li><li>Track the 33 <code>hint</code> reports separately in <a href="https://github.com/ddawdaddwadawdawdawd/s01e03-what-it-shows/issues/2">the booking-v3 issue</a>.</li></ul>
+
+  <p>The existing incident note is at <a href="/kb/incidents/4471">#4471</a>. This page records the two causes behind its merged count.</p>
+  <p class="stamp">desk ref <b>DR-N0HB-3NXV</b></p>
+  <footer>Pages are written by people. Tables and charts are built from data at render time.</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,50 @@
+---
+layout: runbook
+title: '#4471 · two date bugs, not one'
+owner: Damian Tański
+status: draft
+reviewed: 2026-10-28
+signature: Damian Tański
+---
+
+<script>
+  import Callout from '#lib/kb/Callout.svelte';
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+Ticket #4471 contains two different date bugs, not one parser bug. The export has 427 rows but
+only **412 unique reports**: 15 IDs repeat because export pages overlap. Count each report ID once.
+
+## What the reports show
+
+Classify each report from the tenant's locale and booking form, not the intake tag. Intake guesses
+from the reporter's browser; it does not identify the cause.
+
+<CauseTable ticket={4471} />
+
+### `parser` · 379 reports
+
+The shared parser reads every date month first. Tenants in day-first locales therefore get flipped
+dates. This affects all 11 tenants and arrives through app, email, and form reports.
+
+### `hint` · 33 reports
+
+The `booking-v3` form tells people to enter `MM/DD/YYYY`, then reads the value using the tenant's
+day-first locale. Those form submissions fail differently from the shared-parser bug. The affected
+tenants are Alder Physio, Copper Studio, and Pale Harbour.
+
+<Callout kind="warn">
+The desk's five one-day-move notes are all in the `parser` group. They do not make a third cause.
+The intake tag also disagrees with the cause for 38 unique reports, so do not split tickets by tag.
+</Callout>
+
+## Tickets to file
+
+- Keep the 379 `parser` reports together under [the shared-parser issue](https://github.com/ddawdaddwadawdawdawd/s01e03-what-it-shows/issues/1).
+- Track the 33 `hint` reports separately in [the booking-v3 issue](https://github.com/ddawdaddwadawdawdawd/s01e03-what-it-shows/issues/2).
+
+The existing incident note is at [#4471](/kb/incidents/4471). This page records the two causes
+behind its merged count.
+
+<RenderStamp {signature} />
